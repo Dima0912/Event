@@ -22,6 +22,12 @@ class EventsTableSeeder extends Seeder
                 'date_end' => '2023.01.7:00',
             ],
 
+            [
+                'title' => 'Year',
+                'date_start' => '2023.10.13:00',
+                'date_end' => '2024.11.17:00',
+            ],
+
         ]);
     }
 }

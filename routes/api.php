@@ -14,20 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 Route::group(['middleware' => 'api'], function ($router) {
-    Route::post('/login', [\App\Http\Controllers\JWTController::class, 'login']);
+    Route::post('/login', [\App\Http\Controllers\JWTController::class, 'login'])->name('login');
     Route::post('/logout', [\App\Http\Controllers\JWTController::class, 'logout']);
     Route::post('/refresh', [\App\Http\Controllers\JWTController::class, 'refresh']);
     Route::post('/profile', [\App\Http\Controllers\JWTController::class, 'profile']);
 });
 
-Route::group(['middleware' => 'api'], function ($router) {
+Route::group(['middleware' => 'auth:api'], function ($router) {
     Route::prefix('events')->group(function () {
-        Route::get('index', [\App\Http\Controllers\EventController::class, 'index']);
+        Route::post('index', [\App\Http\Controllers\EventController::class, 'index']);
         Route::post('create', [\App\Http\Controllers\EventController::class, 'create']);
         Route::post('store', [\App\Http\Controllers\EventController::class, 'store']);
         Route::get('show/{id}', [\App\Http\Controllers\EventController::class, 'show']);
@@ -37,7 +37,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     });
 });
 
-Route::group(['middleware' => 'api'], function ($router) {
+Route::group(['middleware' => 'auth:api'], function ($router) {
     Route::prefix('users')->group(function () {
         Route::post('index', [\App\Http\Controllers\UserController::class, 'index']);
         Route::post('create', [\App\Http\Controllers\UserController::class, 'create']);
