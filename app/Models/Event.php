@@ -9,9 +9,11 @@ class Event extends Model
 {
     use HasFactory;
 
-    public function user(){
+    protected $with = ['users'];
 
-        return $this->belongsToMany(User::class);
+    public function users(){
+
+        return $this->belongsToMany(User::class, 'users_events', 'user_id', 'event_id');
 
     }
 }

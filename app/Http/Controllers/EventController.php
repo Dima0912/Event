@@ -86,6 +86,15 @@ class EventController extends Controller
         $event->title = $request->input('title');
         $event->date_start = $request->input('date_start');
         $event->date_end = $request->input('date_end');
+        $event->save();
+        if ($request->get('users')) {
+            $event->users()->detach();
+            foreach ($request->get('users') as $userId) {
+                $event->users()->attach($userId);
+            }
+        }
+
+        dd($event);
     }
 
     /**

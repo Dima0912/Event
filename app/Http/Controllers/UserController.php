@@ -40,6 +40,7 @@ class UserController
         $user->phone = $request->post('phone');
         $user->email = $request->post('email');
         $user->save();
+
     }
 
     /**
