@@ -93,8 +93,6 @@ class EventController extends Controller
                 $event->users()->attach($userId);
             }
         }
-
-        dd($event);
     }
 
     /**

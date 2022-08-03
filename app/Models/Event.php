@@ -9,11 +9,17 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "title",
+        "date_start",
+        "date_end"
+    ];
+
     protected $with = ['users'];
 
     public function users(){
 
-        return $this->belongsToMany(User::class, 'users_events', 'user_id', 'event_id');
+        return $this->belongsToMany(User::class, 'users_events', 'event_id', 'user_id');
 
     }
 }
