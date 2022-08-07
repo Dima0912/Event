@@ -27,26 +27,22 @@ Route::group(['middleware' => 'api'], function ($router) {
 
 Route::group(['middleware' => 'auth:api'], function ($router) {
     Route::prefix('events')->group(function () {
-        Route::get('index', [\App\Http\Controllers\EventController::class, 'index']);
-        Route::post('create', [\App\Http\Controllers\EventController::class, 'create']);
-        Route::post('store', [\App\Http\Controllers\EventController::class, 'store']);
-        Route::get('show/{id}', [\App\Http\Controllers\EventController::class, 'show']);
-        Route::post('edit', [\App\Http\Controllers\EventController::class, 'edit']);
-        Route::put('update/{id}', [\App\Http\Controllers\EventController::class, 'update']);
-        Route::delete('destroy', [\App\Http\Controllers\EventController::class, 'delete']);
+        Route::get('', [\App\Http\Controllers\EventController::class, 'index']);
+        Route::post('', [\App\Http\Controllers\EventController::class, 'store']);
+        Route::get('/{id}', [\App\Http\Controllers\EventController::class, 'show']);
+        Route::put('/{id}', [\App\Http\Controllers\EventController::class, 'update']);
+        Route::delete('', [\App\Http\Controllers\EventController::class, 'delete']);
     });
 });
 
 
 Route::group(['middleware' => 'auth:api'], function ($router) {
     Route::prefix('users')->group(function () {
-        Route::get('index', [\App\Http\Controllers\UserController::class, 'index']);
-        Route::post('create', [\App\Http\Controllers\UserController::class, 'create']);
-        Route::post('store', [\App\Http\Controllers\UserController::class, 'store']);
-        Route::get('show/{id}', [\App\Http\Controllers\UserController::class, 'show']);
-        Route::post('edit', [\App\Http\Controllers\UserController::class, 'edit']);
-        Route::put('update', [\App\Http\Controllers\UserController::class, 'update']);
-        Route::delete('destroy', [\App\Http\Controllers\UserController::class, 'delete']);
+        Route::get('', [\App\Http\Controllers\UserController::class, 'index']);
+        Route::post('', [\App\Http\Controllers\UserController::class, 'store']);
+        Route::get('/{id}', [\App\Http\Controllers\UserController::class, 'show']);
+        Route::put('/{id}', [\App\Http\Controllers\UserController::class, 'update']);
+        Route::delete('', [\App\Http\Controllers\UserController::class, 'delete']);
     });
 });
 

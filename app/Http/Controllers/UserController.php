@@ -15,16 +15,6 @@ class UserController
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,6 +29,7 @@ class UserController
         $user->surname = $request->post('surname');
         $user->phone = $request->post('phone');
         $user->email = $request->post('email');
+        $user->password = $request->post('password');
         $user->save();
 
     }
@@ -56,16 +47,6 @@ class UserController
         return $users;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -81,7 +62,6 @@ class UserController
         $user->surname = $request->input('surname');
         $user->phone = $request->input('phone');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
         $user->save();
     }
 

@@ -27,9 +27,9 @@ class CreateEventRequest extends FormRequest
     {
         return [
 
-            'title' => 'required|min:5|max:50',
-            'date_start' => 'required|date',
-            'date_end' => 'required|date',
+//            'title' => 'min:5|max:50',
+//            'date_start' => 'date',
+//            'date_end' => 'date'
         ];
     }
 
