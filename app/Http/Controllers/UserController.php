@@ -71,8 +71,12 @@ class UserController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $user, $id)
     {
-        $user->delete();
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+        }
+
     }
 }

@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth:api'], function ($router) {
         Route::post('', [\App\Http\Controllers\EventController::class, 'store']);
         Route::get('/{id}', [\App\Http\Controllers\EventController::class, 'show']);
         Route::put('/{id}', [\App\Http\Controllers\EventController::class, 'update']);
-        Route::delete('', [\App\Http\Controllers\EventController::class, 'delete']);
+        Route::delete('/{id}', [\App\Http\Controllers\EventController::class, 'destroy']);
     });
 });
 
@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth:api'], function ($router) {
         Route::post('', [\App\Http\Controllers\UserController::class, 'store']);
         Route::get('/{id}', [\App\Http\Controllers\UserController::class, 'show']);
         Route::put('/{id}', [\App\Http\Controllers\UserController::class, 'update']);
-        Route::delete('', [\App\Http\Controllers\UserController::class, 'delete']);
+        Route::delete('/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
     });
 });
 
