@@ -76,6 +76,8 @@ class EventController extends Controller
         $event = Event::find($id);
         if ($event) {
             $event->delete();
+        }else {
+            abort(404);
         }
     }
 }
