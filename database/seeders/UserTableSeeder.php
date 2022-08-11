@@ -25,13 +25,13 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('secret'),
             ],
 
-//            [
-//                'name' => 'asas',
-//                'surname' => 'sde',
-//                'phone' => '+380932334888',
-//                'email' => 'mirnydmisds@gmail.com',
-//                'password' => bcrypt('password'),
-//            ],
+            [
+                'name' => 'Alex',
+                'surname' => 'sde',
+                'phone' => '+380932334888',
+                'email' => 'mirnydmisds@gmail.com',
+                'password' => bcrypt('password'),
+            ],
         ]);
     }
 }

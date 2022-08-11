@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Request\CreateUserRequest;
 use App\Http\Request\UpdateUserRequest;
-use App\Models\Event;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Services\UpdateUsersService;
 
 class UserController
 {
@@ -55,14 +54,9 @@ class UserController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, UpdateUsersService $updateUsersService, $id)
     {
-        $user = User::find($id);
-        $user->name = $request->input('name');
-        $user->surname = $request->input('surname');
-        $user->phone = $request->input('phone');
-        $user->email = $request->input('email');
-        $user->save();
+        return $updateUsersService->update_users($request, $id);
     }
 
     /**

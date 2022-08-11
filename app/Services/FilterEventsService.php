@@ -16,7 +16,6 @@ class FilterEventsService implements FilterEventsInterface
     {
         $data = $request->validated();
         $query = Event::query()->with('users')
-
             ->leftJoin('users_events', 'id', '=', 'event_id')
             ->where('event_id', '=', Auth::id());
 

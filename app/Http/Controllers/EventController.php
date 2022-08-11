@@ -8,7 +8,6 @@ use App\Http\Request\UpdateEventRequest;
 use App\Models\Event;
 use App\Services\FilterEventsService;
 use App\Services\UpdateEventsService;
-use http\Client\Curl\User;
 
 
 class EventController extends Controller
