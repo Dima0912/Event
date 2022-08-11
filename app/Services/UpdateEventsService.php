@@ -12,6 +12,9 @@ class UpdateEventsService implements UpdateEventsInterface
     public function update_events(UpdateEventRequest $request, $id)
     {
         $event = Event::find($id);
+        if (empty($event)){
+            abort(404);
+        }
         $event->title = $request->input('title');
         $event->date_start = $request->input('date_start');
         $event->date_end = $request->input('date_end');
