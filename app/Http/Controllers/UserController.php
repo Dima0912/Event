@@ -31,6 +31,7 @@ class UserController
         $user->password = $request->post('password');
         $user->save();
 
+        return $user;
     }
 
     /**
@@ -39,7 +40,7 @@ class UserController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $users, $id)
+    public function show(User $users, int $id)
     {
         $users = User::find($id);
 
@@ -54,7 +55,7 @@ class UserController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, UpdateUsersService $updateUsersService, $id)
+    public function update(UpdateUserRequest $request, UpdateUsersService $updateUsersService, int $id)
     {
         return $updateUsersService->updateUsers($request, $id);
     }
@@ -65,7 +66,7 @@ class UserController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user, $id)
+    public function destroy(User $user, int $id)
     {
         $user = User::find($id);
         if ($user) {

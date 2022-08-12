@@ -17,9 +17,8 @@ class Event extends Model
 
     protected $with = ['users'];
 
-    public function users(){
-
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
         return $this->belongsToMany(User::class, 'users_events', 'event_id', 'user_id');
-
     }
 }

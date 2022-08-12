@@ -19,18 +19,6 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
 
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-
-
     protected $fillable = [
         'name',
         'email',
@@ -56,7 +44,19 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    public function events()
+    public function getJWTIdentifier(): mixed
+    {
+        return $this->getKey();
+    }
+
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+
+    public function events(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Event::class);
     }

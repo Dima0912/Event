@@ -26,9 +26,9 @@ class FilterEventsService implements FilterEventsInterface
             $query->where('date_end', $data['date_end']);
         }
 
-        $post = $query->get();
+        $event = $query->get();
 
-        return $post;
+        return $event;
 
     }
 }

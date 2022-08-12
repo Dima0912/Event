@@ -9,7 +9,7 @@ use App\Services\Contracts\UpdateUsersInterface;
 class UpdateUsersService implements UpdateUsersInterface
 {
 
-    public function updateUsers(UpdateUserRequest $request, $id)
+    public function updateUsers(UpdateUserRequest $request, $id): string
     {
 
         $user = User::find($id);

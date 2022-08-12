@@ -20,7 +20,6 @@ class EventController extends Controller
     public function index(FilterEventsService $filter, FilterEventRequest $request)
     {
         return $filter->filterEvents($request);
-
     }
 
 
@@ -37,6 +36,8 @@ class EventController extends Controller
         $event->date_start = $request->post('date_start');
         $event->date_end = $request->post('date_end');
         $event->save();
+
+        return $event;
     }
 
     /**
@@ -60,7 +61,7 @@ class EventController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEventRequest $request, UpdateEventsService $updateEventsService, $id)
+    public function update(UpdateEventRequest $request, UpdateEventsService $updateEventsService, int $id)
     {
         return $updateEventsService->updateEvents($request, $id);
     }
@@ -71,12 +72,12 @@ class EventController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event, $id)
+    public function destroy(Event $event, int $id)
     {
         $event = Event::find($id);
         if ($event) {
             $event->delete();
-        }else {
+        } else {
             abort(404);
         }
     }
