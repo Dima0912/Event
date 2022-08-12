@@ -56,7 +56,7 @@ class UserController
      */
     public function update(UpdateUserRequest $request, UpdateUsersService $updateUsersService, $id)
     {
-        return $updateUsersService->update_users($request, $id);
+        return $updateUsersService->updateUsers($request, $id);
     }
 
     /**

@@ -19,7 +19,7 @@ class EventController extends Controller
      */
     public function index(FilterEventsService $filter, FilterEventRequest $request)
     {
-        return $filter->filter_events($request);
+        return $filter->filterEvents($request);
 
     }
 
@@ -62,7 +62,7 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, UpdateEventsService $updateEventsService, $id)
     {
-        return $updateEventsService->update_events($request, $id);
+        return $updateEventsService->updateEvents($request, $id);
     }
 
     /**

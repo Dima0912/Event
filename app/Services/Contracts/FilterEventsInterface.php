@@ -8,5 +8,5 @@ use App\Models\User;
 
 interface FilterEventsInterface
 {
-    public function filter_events(FilterEventRequest $request);
+    public function filterEvents(FilterEventRequest $request);
 }

@@ -6,5 +6,5 @@ use App\Http\Request\UpdateEventRequest;
 
 interface UpdateEventsInterface
 {
-  public function update_events(UpdateEventRequest $request, $id);
+  public function updateEvents(UpdateEventRequest $request, $id);
 }

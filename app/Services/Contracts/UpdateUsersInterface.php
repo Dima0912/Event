@@ -6,5 +6,5 @@ use App\Http\Request\UpdateUserRequest;
 
 interface UpdateUsersInterface
 {
-    public function update_users(UpdateUserRequest $request, $id);
+    public function updateUsers(UpdateUserRequest $request, $id);
 }

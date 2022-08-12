@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class FilterEventsService implements FilterEventsInterface
 {
 
-    public function filter_events(FilterEventRequest $request)
+    public function filterEvents(FilterEventRequest $request)
     {
         $data = $request->validated();
         $query = Event::query()->with('users')

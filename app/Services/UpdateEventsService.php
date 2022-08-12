@@ -9,7 +9,7 @@ use App\Services\Contracts\UpdateEventsInterface;
 class UpdateEventsService implements UpdateEventsInterface
 {
 
-    public function update_events(UpdateEventRequest $request, $id)
+    public function updateEvents(UpdateEventRequest $request, $id)
     {
         $event = Event::find($id);
         if (empty($event)){
