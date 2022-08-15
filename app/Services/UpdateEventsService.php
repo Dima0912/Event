@@ -9,13 +9,15 @@ use App\Services\Contracts\UpdateEventsInterface;
 class UpdateEventsService implements UpdateEventsInterface
 {
 
-    public function updateEvents(UpdateEventRequest $request, $id)
+    public function updateEvents(UpdateEventRequest $request, $id): void
     {
         $event = Event::find($id);
-        if (empty($event)){
+        if (isset($event)) {
+            $event->update($request->validated());
+        } else {
             abort(404);
         }
-        $event->update($request->validated());
+
         if ($request->get('users')) {
             $event->users()->detach();
             foreach ($request->get('users') as $userId) {

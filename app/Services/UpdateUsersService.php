@@ -9,14 +9,15 @@ use App\Services\Contracts\UpdateUsersInterface;
 class UpdateUsersService implements UpdateUsersInterface
 {
 
-    public function updateUsers(UpdateUserRequest $request, $id)
+    public function updateUsers(UpdateUserRequest $request, $id): void
     {
-
         $user = User::find($id);
-        if (empty($user)){
+        if (isset($user)) {
+            $user->update($request->validated());
+        } else {
             abort(404);
         }
-        $user->update($request->validated());
+
 
     }
 }
