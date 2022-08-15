@@ -21,17 +21,9 @@ class UserController
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateUserRequest $request)
+    public function store(CreateUserRequest $request, User $user)
     {
-        $user = new User();
-        $user->name = $request->post('name');
-        $user->surname = $request->post('surname');
-        $user->phone = $request->post('phone');
-        $user->email = $request->post('email');
-        $user->password = $request->post('password');
-        $user->save();
-
-        return $user;
+        User::create($request->all());
     }
 
     /**

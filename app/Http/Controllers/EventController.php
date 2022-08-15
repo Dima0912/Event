@@ -31,13 +31,7 @@ class EventController extends Controller
      */
     public function store(CreateEventRequest $request)
     {
-        $event = new Event();
-        $event->title = $request->post('title');
-        $event->date_start = $request->post('date_start');
-        $event->date_end = $request->post('date_end');
-        $event->save();
-
-        return $event;
+        Event::create($request->all());
     }
 
     /**
