@@ -21,7 +21,7 @@ class UserController
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateUserRequest $request, User $user)
+    public function store(CreateUserRequest $request)
     {
         User::create($request->all());
     }
