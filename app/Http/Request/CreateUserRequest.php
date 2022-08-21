@@ -37,7 +37,7 @@ class CreateUserRequest extends FormRequest
             'surname' => 'required|string|max:20',
             'phone' => 'required|max:13',
             'email' => 'required|email',
-            'password' => 'string|min:6|max:50',
+            'password' => 'string|min:6|max:200',
         ];
     }
 }
