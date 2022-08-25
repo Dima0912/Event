@@ -10,6 +10,7 @@ use Tests\TestCase;
 class JwtControllerTest extends TestCase
 {
     use DatabaseMigrations;
+
     /**
      * A basic feature test example.
      *
@@ -24,6 +25,7 @@ class JwtControllerTest extends TestCase
 
         $response->assertOk();
     }
+
 
     public function testFailedEmailUser()
     {

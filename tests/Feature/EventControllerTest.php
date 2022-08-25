@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Event;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -16,15 +18,15 @@ class EventControllerTest extends TestCase
      *
      * @return void
      */
-    public function testStore()
+    public function testStoreEvent()
     {
-        $this->post('api/login', [
+        $token = $this->post('api/login', [
             'email' => 'mirnydmisds@gmail.com',
             'password' => 'password',
         ]);
-
+//        dd($token['access_token']);
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZXZlbnRzLnRlc3QvYXBpL2xvZ2luIiwiaWF0IjoxNjYxMDI5MjI5LCJleHAiOjE2NjEwMzI4MjksIm5iZiI6MTY2MTAyOTIyOSwianRpIjoiWjJFUWx6M3EyOFJFSDJTOCIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.D8RgEHdSKmw5K1Igt3R769kGoTUoWIPsxK0WE6gVPnY',
+            'Authorization' => 'Bearer ' . $token['access_token'],
         ])
             ->post('api/events', [
                 "title" => "Year",
@@ -33,5 +35,40 @@ class EventControllerTest extends TestCase
             ]);
 
         $response->assertStatus(200);
+    }
+
+    public function testShowEvent()
+    {
+        $token = $this->post('api/login', [
+            'email' => 'mirnydmisds@gmail.com',
+            'password' => 'password',
+        ]);
+
+        $this->withHeaders([
+            'Authorization' => 'Bearer' . $token['access_token'],
+        ]);
+
+        $event = Event::take(1)->first();
+
+        $response = $this->get('api/events/' . $event->id);
+        $response->assertOk();
+
+    }
+
+    public function testDeleteEvent()
+    {
+        $token = $this->post('api/login', [
+            'email' => 'mirnydmisds@gmail.com',
+            'password' => 'password',
+        ]);
+
+        $this->withHeaders([
+            'Authorization' => 'Bearer' . $token['access_token'],
+        ]);
+        $event = Event::take(1)->first();
+
+        $response = $this->delete('api/events/' . $event->id);
+
+        $response->assertOk();
     }
 }

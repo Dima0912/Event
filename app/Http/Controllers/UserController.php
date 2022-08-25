@@ -63,7 +63,8 @@ class UserController
         $user = User::find($id);
         if ($user) {
             $user->delete();
-        } else {
+        }
+        else {
             abort(404);
         }
 
