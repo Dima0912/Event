@@ -22,35 +22,21 @@ class UserControllerTest extends TestCase
      */
     public function testStoreUser()
     {
-        $token = $this->post('api/login', [
-            'email' => 'mirnydmisds@gmail.com',
-            'password' => 'password',
+        $this->login();
+        $response = $this->post('api/users', [
+            'name' => 'Dima',
+            'surname' => 'Mirny',
+            'phone' => '+380978943827',
+            'email' => 'mirnывавas@gmail.com',
+            'password' => 'secret',
         ]);
-
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer' . $token['access_token'],
-        ])
-            ->post('api/users', [
-                'name' => 'йцуукук',
-                'surname' => 'Mirny',
-                'phone' => '+380978943827',
-                'email' => 'mirnывавas@gmail.com',
-                'password' => 'secret',
-            ]);
 
         $response->assertStatus(200);
     }
 
     public function testShowUser()
     {
-        $token = $this->post('api/login', [
-            'email' => 'mirnydmisds@gmail.com',
-            'password' => 'password',
-        ]);
-
-        $this->withHeaders([
-            'Authorization' => 'Bearer' . $token['access_token'],
-        ]);
+        $this->login();
         $user = User::take(1)->first();
 
         $response = $this->get('api/users/' . $user->id);
@@ -60,19 +46,10 @@ class UserControllerTest extends TestCase
 
     public function testDeleteUser()
     {
-        $token = $this->post('api/login', [
-            'email' => 'mirnydmisds@gmail.com',
-            'password' => 'password',
-        ]);
-
-        $this->withHeaders([
-            'Authorization' => 'Bearer' . $token['access_token'],
-        ]);
-
+        $this->login();
         $user = User::take(1)->first();
 
         $response = $this->delete('api/users/' . $user->id);
-
         $response->assertOk();
     }
 
