@@ -25,8 +25,8 @@ class LoginJWTRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string', 'min:6', 'max:200'],
+            'email' => 'required|email',
+            'password' => 'required|string|min:6|max:200',
         ];
     }
 }

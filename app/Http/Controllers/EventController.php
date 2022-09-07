@@ -12,6 +12,13 @@ use App\Services\UpdateEventsService;
 
 class EventController extends Controller
 {
+    protected $user;
+
+    public function __construct(Event $event)
+    {
+        $this->event = $event;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +38,7 @@ class EventController extends Controller
      */
     public function store(CreateEventRequest $request)
     {
-        Event::create($request->all());
+        $this->event->create($request->all());
     }
 
     /**
@@ -40,9 +47,9 @@ class EventController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event, int $id)
+    public function show(int $id)
     {
-        $event = Event::find($id);
+        $event = $this->event->find($id);
 
         return $event;
     }
@@ -66,9 +73,9 @@ class EventController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event, int $id)
+    public function destroy(int $id)
     {
-        $event = Event::find($id);
+        $event = $this->event->find($id);
         if ($event) {
             $event->delete();
         } else {

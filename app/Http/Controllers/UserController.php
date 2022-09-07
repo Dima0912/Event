@@ -9,11 +9,12 @@ use App\Services\UpdateUsersService;
 
 class UserController
 {
-    public function index()
+    protected $user;
+
+    public function __construct(User $user)
     {
-
+        $this->user = $user;
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -23,7 +24,7 @@ class UserController
      */
     public function store(CreateUserRequest $request)
     {
-        User::create($request->all());
+        $this->user->create($request->all());
     }
 
     /**
@@ -32,11 +33,11 @@ class UserController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $users, int $id)
+    public function show(int $id)
     {
-        $users = User::find($id);
+        $user = $this->user->find($id);
 
-        return $users;
+        return $user;
     }
 
 
@@ -58,9 +59,9 @@ class UserController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user, int $id)
+    public function destroy(int $id)
     {
-        $user = User::find($id);
+        $user = $this->user->find($id);
         if ($user) {
             $user->delete();
         }

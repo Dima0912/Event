@@ -8,10 +8,16 @@ use App\Services\Contracts\UpdateUsersInterface;
 
 class UpdateUsersService implements UpdateUsersInterface
 {
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     public function updateUsers(UpdateUserRequest $request, $id): void
     {
-        $user = User::find($id);
+        $user = $this->user->find($id);
         if (isset($user)) {
             $user->update($request->validated());
         } else {

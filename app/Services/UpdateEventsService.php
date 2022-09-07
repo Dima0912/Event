@@ -8,10 +8,16 @@ use App\Services\Contracts\UpdateEventsInterface;
 
 class UpdateEventsService implements UpdateEventsInterface
 {
+    protected $event;
+
+    public function __construct(Event $event)
+    {
+       $this->event = $event;
+    }
 
     public function updateEvents(UpdateEventRequest $request, $id): void
     {
-        $event = Event::find($id);
+       $event = $this->event->find($id);
         if (isset($event)) {
             $event->update($request->validated());
         } else {
