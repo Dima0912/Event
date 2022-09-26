@@ -10,7 +10,7 @@ class UpdateEventRequest extends FormRequest
 {
     public function authorize()
     {
-        return 'false';
+        return false;
     }
 
     public function messages()

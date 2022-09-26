@@ -9,7 +9,7 @@ class CreateEventRequest extends FormRequest
 
     public function authorize()
     {
-        return 'true';
+        return true;
     }
 
     public function messages()
